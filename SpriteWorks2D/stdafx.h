@@ -7,11 +7,7 @@
 
 #include "targetver.h"
 
-// TODO: reference additional headers your program requires here
-
 #define STRICT
-// #define WINVER       0x500
-
 #include <Windows.h>
 #include <WindowsX.h>
 

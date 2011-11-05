@@ -30,6 +30,12 @@
     <ClInclude Include="SpriteWorks2D.h">
       <Filter>External Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SWColor.h">
+      <Filter>External Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXMain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -39,6 +45,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TextureHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
