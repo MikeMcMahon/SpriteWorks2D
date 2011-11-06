@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #ifdef RENDER_ENG_DX 
-#include "DirectXMain.h"
+#include "SWD3D.h"
 #endif
-
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
 	// Check any available messages from the queue
@@ -26,15 +25,18 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 	return DefWindowProc(hWnd, message, wParam, lParam);
 }
 
-
-SW2D::SWDevice::SWDevice ( void ) { 
+Renderers::IRenderer* SW2D::SWDevice::GetRenderer ( void ) { 
+	 return this->renderer;
 }
-
+ 
 HWND* SW2D::SWDevice::GetWindowHandle ( void ) { 
 	return &(this->hWnd);
 }
 
 bool SW2D::SWDevice::CreateGameWindow ( HINSTANCE hInstance, int width, int height) { 
+	this->windowDimensions.height = height;
+	this->windowDimensions.width = width;
+
 	// Register class
 	WNDCLASSEX wcex;
 	wcex.cbSize			= sizeof(WNDCLASSEX);		    // the size of the structure
@@ -81,9 +83,10 @@ bool SW2D::SWDevice::CreateGameWindow ( HINSTANCE hInstance, int width, int heig
 	return true;
 }
 
-
-void SW2D::SWDevice::InitInterface ( void ) { 
+bool SW2D::SWDevice::InitInterface ( void ) { 
 #ifdef RENDER_ENG_DX
-	
+	this->renderer = new Renderers::D3DRend();
 #endif
+
+	return this->renderer->StartupInterface (this->hWnd, this->windowDimensions.height, this->windowDimensions.width);
 }

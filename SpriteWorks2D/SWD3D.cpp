@@ -1,27 +1,30 @@
 #include "StdAfx.h"
-#include "DirectXMain.h"
+#include "SWD3D.h"
 
-// D3D GLOBALS ////////////////////////////////
-ID3D10Device* pD3DDevice = NULL;
-IDXGISwapChain* pSwapChain = NULL;
-ID3D10RenderTargetView* pRenderTargetView = NULL;
-D3DXMATRIX matProjection;
-D3D10_VIEWPORT viewPort;
+namespace d3d { 
+	// D3D GLOBALS ////////////////////////////////
+	ID3D10Device* pD3DDevice = NULL;
+	IDXGISwapChain* pSwapChain = NULL;
+	ID3D10RenderTargetView* pRenderTargetView = NULL;
+	D3DXMATRIX matProjection;
+	D3D10_VIEWPORT viewPort;
 
-// Blend State
-ID3D10BlendState* pBlendState10 = NULL;
-ID3D10BlendState* pOriginalBlendState10 = NULL;
-ID3D10BlendState* pFontOriginalBlendState10 = NULL;
+	// Blend State
+	ID3D10BlendState* pBlendState10 = NULL;
+	ID3D10BlendState* pOriginalBlendState10 = NULL;
+	ID3D10BlendState* pFontOriginalBlendState10 = NULL;
 
-// Shader Resource View
-ID3D10ShaderResourceView* gSpriteTextureRV = NULL;
+	// Shader Resource View
+	ID3D10ShaderResourceView* gSpriteTextureRV = NULL;
 
-// Sprite stuff
-ID3DX10Sprite* pSpriteObject = NULL;
-D3DX10_SPRITE  spritePool[NUM_POOL_SPRITES];
-ID3DX10Font* pGameFont = NULL;
+	// Sprite stuff
+	ID3DX10Sprite* pSpriteObject = NULL;
+	D3DX10_SPRITE  spritePool[NUM_POOL_SPRITES];
+	ID3DX10Font* pGameFont = NULL; 
+}
+Renderers::D3DRend::D3DRend ( void ) { }
 
-bool DX::InitDirect3D ( HWND hWnd, int windowWidth, int windowHeight ) { 
+bool Renderers::D3DRend::StartupInterface ( HWND hWnd, int windowWidth, int windowHeight ) { 
 	// Create the clear the DXGI_SWAP_CHAIN_DESC structure
 	DXGI_SWAP_CHAIN_DESC swapChainDesc;
 	ZeroMemory(&swapChainDesc, sizeof(swapChainDesc));
@@ -46,8 +49,8 @@ bool DX::InitDirect3D ( HWND hWnd, int windowWidth, int windowHeight ) {
 							0,
 							D3D10_SDK_VERSION,
 							&swapChainDesc,
-							&pSwapChain,
-							&pD3DDevice);
+							&d3d::pSwapChain,
+							&d3d::pD3DDevice);
 
 	// Ensure the device was created
 	if (hr != S_OK) {
@@ -57,12 +60,12 @@ bool DX::InitDirect3D ( HWND hWnd, int windowWidth, int windowHeight ) {
 
 	// Get the back buffer from the swapchain
 	ID3D10Texture2D *pBackBuffer;
-	hr = pSwapChain->GetBuffer(0, __uuidof(ID3D10Texture2D), (LPVOID*) &pBackBuffer);
+	hr = d3d::pSwapChain->GetBuffer(0, __uuidof(ID3D10Texture2D), (LPVOID*) &pBackBuffer);
 	if (hr != S_OK) {
 		return false;
 	}
 	// Create the render target view
-	hr = pD3DDevice->CreateRenderTargetView(pBackBuffer, NULL, &pRenderTargetView);
+	hr = d3d::pD3DDevice->CreateRenderTargetView(pBackBuffer, NULL, &d3d::pRenderTargetView);
 
 	// Release the back buffer
 	pBackBuffer->Release();
@@ -73,23 +76,23 @@ bool DX::InitDirect3D ( HWND hWnd, int windowWidth, int windowHeight ) {
 	}
 
 	 // Set the render target
-	pD3DDevice->OMSetRenderTargets(1, &pRenderTargetView, NULL);
+	d3d::pD3DDevice->OMSetRenderTargets(1, &d3d::pRenderTargetView, NULL);
 
 	// Create and set the viewport
-	viewPort.Width = windowWidth;
-	viewPort.Height = windowHeight;
-	viewPort.MinDepth = 0.0f;
-	viewPort.MaxDepth = 1.0f;
-	viewPort.TopLeftX = 0;
-	viewPort.TopLeftY = 0;
+	d3d::viewPort.Width = windowWidth;
+	d3d::viewPort.Height = windowHeight;
+	d3d::viewPort.MinDepth = 0.0f;
+	d3d::viewPort.MaxDepth = 1.0f;
+	d3d::viewPort.TopLeftX = 0;
+	d3d::viewPort.TopLeftY = 0;
 
-	pD3DDevice->RSSetViewports(1, &viewPort);
+	d3d::pD3DDevice->RSSetViewports(1, &d3d::viewPort);
 	
-	D3DXMatrixOrthoOffCenterLH(&matProjection, 
-		(float)viewPort.TopLeftX, 
-		(float)viewPort.Width, 
-		(float)viewPort.TopLeftY, 
-		(float)viewPort.Height, 
+	D3DXMatrixOrthoOffCenterLH(&d3d::matProjection, 
+		(float)d3d::viewPort.TopLeftX, 
+		(float)d3d::viewPort.Width, 
+		(float)d3d::viewPort.TopLeftY, 
+		(float)d3d::viewPort.Height, 
 		0.1f, 
 		10);
 
@@ -100,48 +103,48 @@ bool DX::InitDirect3D ( HWND hWnd, int windowWidth, int windowHeight ) {
 *** Shuts down the Direct3D Interface
 ***
 ***************************************/
-void DX::ShutdownDirect3D ( void ) {
+void Renderers::D3DRend::ShutdownInterface ( void ) {
 	// Release the original blend state object
-	if (pOriginalBlendState10 != NULL){
-		pOriginalBlendState10->Release();
-		pOriginalBlendState10 = NULL;
+	if (d3d::pOriginalBlendState10 != NULL){
+		d3d::pOriginalBlendState10->Release();
+		d3d::pOriginalBlendState10 = NULL;
 	}
 
 	// Release the blend state object
-	if (pBlendState10 != NULL)	{
-		pBlendState10->Release();
-		pBlendState10 = NULL;
+	if (d3d::pBlendState10 != NULL)	{
+		d3d::pBlendState10->Release();
+		d3d::pBlendState10 = NULL;
 	}
 
     // release the ID3DX10Sprite object
-    if (pSpriteObject)    {
-        pSpriteObject->Release();
-        pSpriteObject = NULL;
+    if (d3d::pSpriteObject)    {
+        d3d::pSpriteObject->Release();
+        d3d::pSpriteObject = NULL;
     }
 
 	// Release the game font
-	if (pGameFont) { 
-		pGameFont->Release();
-		pGameFont = NULL;
+	if (d3d::pGameFont) { 
+		d3d::pGameFont->Release();
+		d3d::pGameFont = NULL;
 	}
 
 	// release the rendertarget
-	if (pRenderTargetView) 	{
-		pRenderTargetView->Release();
+	if (d3d::pRenderTargetView) 	{
+		d3d::pRenderTargetView->Release();
 	}
 
 	// release the swapchain
-    if (pSwapChain)	{
-		pSwapChain->Release();
+    if (d3d::pSwapChain)	{
+		d3d::pSwapChain->Release();
 	}
 
 	// release the D3D Device
-    if (pD3DDevice)	{
-		pD3DDevice->Release();
+    if (d3d::pD3DDevice)	{
+		d3d::pD3DDevice->Release();
 	}
 } // ShutdownDirect3D
 
-void DX::InitiateDefaultBlend(D3D10_BLEND_DESC* StateDesc) {
+void Renderers::D3DRend::InitiateDefaultBlend(D3D10_BLEND_DESC* StateDesc) {
 	ZeroMemory(StateDesc, sizeof(D3D10_BLEND_DESC));
 	StateDesc->AlphaToCoverageEnable = FALSE;
 	StateDesc->BlendEnable[0] = TRUE;	// If this is false, DUH we can't blend
@@ -153,3 +156,8 @@ void DX::InitiateDefaultBlend(D3D10_BLEND_DESC* StateDesc) {
 	StateDesc->BlendOpAlpha = D3D10_BLEND_OP_ADD;
 	StateDesc->RenderTargetWriteMask[0] = D3D10_COLOR_WRITE_ENABLE_ALL;
 } // Initiate Default Blend
+
+
+ID3D10Device* Renderers::D3DRend::GetDevice ( void ) { 
+	return d3d::pD3DDevice;
+}

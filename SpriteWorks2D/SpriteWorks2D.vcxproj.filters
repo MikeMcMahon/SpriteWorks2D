@@ -33,7 +33,22 @@
     <ClInclude Include="SWColor.h">
       <Filter>Public Headers</Filter>
     </ClInclude>
-    <ClInclude Include="DirectXMain.h">
+    <ClInclude Include="SWCoordinates.h">
+      <Filter>Public Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SWMove.h">
+      <Filter>Public Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SWScale.h">
+      <Filter>Public Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SWSize.h">
+      <Filter>Public Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SWIRenderer.h">
+      <Filter>Public Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SWD3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -50,10 +65,10 @@
     <ClCompile Include="Font.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DirectXMain.cpp">
+    <ClCompile Include="GameEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameEngine.cpp">
+    <ClCompile Include="SWD3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
