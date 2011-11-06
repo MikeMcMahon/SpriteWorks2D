@@ -21,37 +21,4 @@
 
 #include <SpriteWorks2D.h>
 
-// Required for rendering stuff on time
-#ifndef TICKS_PER_SECOND
-	#define TICKS_PER_SECOND 60
-#endif
-
-#define SKIP_TICKS (1000.0f / (float)TICKS_PER_SECOND)
-
-#ifndef MAX_FRAMESKIP
-	#define MAX_FRAMESKIP 5
-#endif
-
-// Sprite calcs
-#ifndef MAX_SPRITES
-	#define MAX_SPRITES			2048
-#endif
-#define NUM_POOL_SPRITES	MAX_SPRITES
-
-// Window handling stuff
-// TODO put these somewhere else, not in a define 
-#define WINDOW_WIDTH 1024
-#define WINDOW_HEIGHT 768
-
-#ifndef CLASS_NAME
-	#define CLASS_NAME TEXT("DarkSeed")
-#endif
-
-#if _DEBUG
-    #define DIRECTORY_PREFIX "../"
-#else 
-    #define DIRECTORY_PREFIX "./"
-#endif
-
-
 /* eof */

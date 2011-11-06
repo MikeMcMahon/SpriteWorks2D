@@ -13,7 +13,7 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="External Header Files">
+    <Filter Include="Public Headers">
       <UniqueIdentifier>{675e7d6f-bd40-42b6-9ffd-d0e4c2a2ced6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -28,10 +28,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SpriteWorks2D.h">
-      <Filter>External Header Files</Filter>
+      <Filter>Public Headers</Filter>
     </ClInclude>
     <ClInclude Include="SWColor.h">
-      <Filter>External Header Files</Filter>
+      <Filter>Public Headers</Filter>
     </ClInclude>
     <ClInclude Include="DirectXMain.h">
       <Filter>Header Files</Filter>
@@ -51,6 +51,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DirectXMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
