@@ -9,6 +9,7 @@ namespace Renderers {
 
 		bool StartupInterface ( HWND hWnd, int width, int height );
 		void ShutdownInterface ( void );
+		void Render ( void );
 		
 		ID3D10Device* GetDevice ( void );
 

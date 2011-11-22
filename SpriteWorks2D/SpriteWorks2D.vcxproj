@@ -80,6 +80,15 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="SWSprite.h" />
+    <ClInclude Include="SWAnimation.h" />
+    <ClInclude Include="SWFrameAnimation.h" />
+    <ClInclude Include="ISWAnimation.h" />
+    <ClInclude Include="ISprite.h" />
+    <ClInclude Include="SpriteSheet.h" />
+    <ClInclude Include="SpriteType.h" />
+    <ClInclude Include="SW2D.h" />
+    <ClInclude Include="SWGameClock.h" />
     <ClInclude Include="SWD3D.h" />
     <ClInclude Include="SWIRenderer.h" />
     <ClInclude Include="SWColor.h" />
@@ -92,6 +101,8 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SWSprite.cpp" />
+    <ClCompile Include="SpriteSheet.cpp" />
     <ClCompile Include="SWD3D.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="GameClock.cpp" />

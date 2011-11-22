@@ -16,6 +16,21 @@
     <Filter Include="Public Headers">
       <UniqueIdentifier>{675e7d6f-bd40-42b6-9ffd-d0e4c2a2ced6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\sprites">
+      <UniqueIdentifier>{cce9221f-6722-47a4-8e20-8beda65f4b1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sprites\animations">
+      <UniqueIdentifier>{211ec984-70af-4751-81cf-5d71e2648c0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\clock">
+      <UniqueIdentifier>{e1da39ff-4575-4f01-a61c-02d27d7c7b44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\render">
+      <UniqueIdentifier>{409d518f-1c02-40b7-9602-1bb69cf35d86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\util">
+      <UniqueIdentifier>{b9342dc7-f442-4a68-a1c3-ee5fdedfa747}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -30,26 +45,53 @@
     <ClInclude Include="SpriteWorks2D.h">
       <Filter>Public Headers</Filter>
     </ClInclude>
-    <ClInclude Include="SWColor.h">
-      <Filter>Public Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="SWCoordinates.h">
-      <Filter>Public Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="SWMove.h">
-      <Filter>Public Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="SWScale.h">
-      <Filter>Public Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="SWSize.h">
-      <Filter>Public Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="SWIRenderer.h">
-      <Filter>Public Headers</Filter>
-    </ClInclude>
     <ClInclude Include="SWD3D.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SWColor.h">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="SWSize.h">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="SWCoordinates.h">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="SWScale.h">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="SWMove.h">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="SWIRenderer.h">
+      <Filter>Header Files\render</Filter>
+    </ClInclude>
+    <ClInclude Include="ISprite.h">
+      <Filter>Header Files\sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteSheet.h">
+      <Filter>Header Files\sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteType.h">
+      <Filter>Header Files\sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="SWGameClock.h">
+      <Filter>Header Files\clock</Filter>
+    </ClInclude>
+    <ClInclude Include="SW2D.h">
+      <Filter>Public Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ISWAnimation.h">
+      <Filter>Header Files\sprites\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="SWFrameAnimation.h">
+      <Filter>Header Files\sprites\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="SWAnimation.h">
+      <Filter>Header Files\sprites\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="SWSprite.h">
+      <Filter>Header Files\sprites</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -69,6 +111,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SWD3D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteSheet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SWSprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

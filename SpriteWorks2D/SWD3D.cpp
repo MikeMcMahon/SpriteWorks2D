@@ -24,6 +24,10 @@ namespace d3d {
 }
 Renderers::D3DRend::D3DRend ( void ) { }
 
+void Renderers::D3DRend::Render ( void ) { 
+	// 
+}
+
 bool Renderers::D3DRend::StartupInterface ( HWND hWnd, int windowWidth, int windowHeight ) { 
 	// Create the clear the DXGI_SWAP_CHAIN_DESC structure
 	DXGI_SWAP_CHAIN_DESC swapChainDesc;
