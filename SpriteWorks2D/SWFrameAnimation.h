@@ -28,13 +28,13 @@ namespace Sprites {
         void IncrementFrame() {
             LONGLONG currentFrameTime; 
             if (this->lastFrameTime == 0) { 
-                Timers::GameClock::GetInstance()->GetTime ( &this->lastFrameTime ); 
+                Timers::SWGameClock::GetInstance()->GetTime ( &this->lastFrameTime ); 
                 currentFrameTime = this->lastFrameTime;
             } else { 
-                Timers::GameClock::GetInstance()->GetTime ( &currentFrameTime ); 
+                Timers::SWGameClock::GetInstance()->GetTime ( &currentFrameTime ); 
             }
 
-            float frameDiff = ( (float) ( currentFrameTime - this->lastFrameTime ) / (float) Timers::GameClock::GetInstance()->frequency ) * 1000.0f;
+            float frameDiff = ( (float) ( currentFrameTime - this->lastFrameTime ) / (float) Timers::SWGameClock::GetInstance()->frequency ) * 1000.0f;
             if ( frameDiff >= this->elapseFrame ) { 
 
                 if (this->curFrameAnimate < this->numFrames) { 
@@ -45,7 +45,7 @@ namespace Sprites {
 				if (this->curFrameAnimate >= this->numFrames)
                     this->curFrameAnimate = 0;
 
-                Timers::GameClock::GetInstance()->GetTime ( &this->lastFrameTime );
+                Timers::SWGameClock::GetInstance()->GetTime ( &this->lastFrameTime );
             }
             
             /*

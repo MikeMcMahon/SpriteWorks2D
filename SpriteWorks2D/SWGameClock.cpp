@@ -2,21 +2,21 @@
 
 LONGLONG cacheTime;
 
-Timers::GameClock* Timers::GameClock::pInstance = NULL;
+Timers::SWGameClock* Timers::SWGameClock::pInstance = NULL;
 
-Timers::GameClock* Timers::GameClock::GetInstance ( ) { 
+Timers::SWGameClock* Timers::SWGameClock::GetInstance ( ) { 
     if (pInstance == NULL) { 
-        pInstance = new GameClock();
+        pInstance = new SWGameClock();
     }
     return pInstance;
 }
 
 
-Timers::GameClock::GameClock(void) {
+Timers::SWGameClock::SWGameClock(void) {
     this->Initialize ( );
 }
 
-void Timers::GameClock::GetTime ( LONGLONG * t ) { 
+void Timers::SWGameClock::GetTime ( LONGLONG * t ) { 
     // Use timeGetTime() if queryperformancecounter is not supported 
     if (!QueryPerformanceCounter( (LARGE_INTEGER *) t)) { 
         *t = timeGetTime();
@@ -25,7 +25,7 @@ void Timers::GameClock::GetTime ( LONGLONG * t ) {
     cacheTime = *t;
 }
 
-LONGLONG Timers::GameClock::GetTimeElapsed ( void ) { 
+LONGLONG Timers::SWGameClock::GetTimeElapsed ( void ) { 
     LONGLONG t; 
     
     // Use timeGetTime() if queryperformancecounter is not supported
@@ -36,13 +36,13 @@ LONGLONG Timers::GameClock::GetTimeElapsed ( void ) {
     return (t - cacheTime);
 }
 
-void Timers::GameClock::Initialize ( void ) { 
+void Timers::SWGameClock::Initialize ( void ) { 
     if ( !QueryPerformanceFrequency((LARGE_INTEGER *) &this->frequency) ) { 
 		this->frequency = 1000; // 1000ms to one second 
 	}
     this->timeCount = DWORD(this->frequency / TICKS_PER_SECOND);
 }
 
-Timers::GameClock::~GameClock(void)
+Timers::SWGameClock::~SWGameClock(void)
 {
 }

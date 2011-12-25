@@ -1,10 +1,10 @@
 #pragma once
 
 namespace Timers { 
-    class GameClock
+    class SWGameClock
     {
     public:
-        static GameClock* GetInstance();
+        static SWGameClock* GetInstance();
         void Initialize ( void );
         DWORD timeCount;
 
@@ -12,11 +12,11 @@ namespace Timers {
         LONGLONG GetTimeElapsed ( void );
         LONGLONG frequency; 
 
-        ~GameClock(void);
+        ~SWGameClock(void);
     protected:
-        GameClock(void);
+        SWGameClock(void);
 
     private:
-        static GameClock* pInstance;
-    }; // GameClock
+        static SWGameClock* pInstance;
+    }; // SWGameClock
 } // Timers
